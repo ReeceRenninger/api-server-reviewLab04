@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-const { clothesModel } = require('../models')
+const { clothesModel } = require('../models');
 const router = express.Router();
 
 router.get('/cItem', async (req, res, next) => {
@@ -17,12 +17,12 @@ router.post('/order', async (req, res, next) => {
 
 router.delete('/order/:id', async (req, res, next) => {
   try {
+    const deleteCItem = await clothesModel.findByPk(req.params.id);  //findbypk or id? my choice?
+
 
   }catch(e){
     next(e);
   }
-  const deleteCItem = await clothesModel.findByPk(req.params.id);  //findbypk or id? my choice?
-  await
-})
+});
 
 module.exports = router;
