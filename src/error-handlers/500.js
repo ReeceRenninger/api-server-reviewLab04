@@ -1,0 +1,14 @@
+// copy over your error handlers from previous lab
+'use strict';
+
+module.exports = (error, req, res, next) => {
+  const errMess = typeof(error) === 'string' ? error : error.message;
+  res.status(500).send({
+    error: 500,
+    reoute: req.path,
+    query: req.query,
+    path: req.params,
+    body: req.body,
+    message: `Error in server: ${errMess}`,
+  });
+};
