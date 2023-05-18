@@ -1,10 +1,12 @@
 'use strict';
 
-const { Sequilize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const food = require('./food');
 
-const DATABASE_URL = new Sequelize(DATABASE_URL);
+const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite::memory:' : process.env.DATABASE_URL;
 
-const foodModel = food(SequilizerDatabase, DataTypes);
+const sequelizeDatabase = new Sequelize(DATABASE_URL);
 
-module.exports = { SequilizerDatabase, foodModel };
+const foodModel = food(sequelizeDatabase, DataTypes);
+
+module.exports = { sequelizeDatabase, foodModel };
